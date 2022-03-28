@@ -8,14 +8,15 @@
 import UIKit
 
 class GalleryViewController: UICollectionViewController {
-    typealias Gif = GifResponse.GifObject.Image.Original
 
     private var gifs: [Gif] = []
+    private var presenter: GalleryViewPresenter?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
         prepareCollection()
+        preparePresenter()
         fetchGifs()
     }
     
@@ -28,9 +29,30 @@ class GalleryViewController: UICollectionViewController {
         layout.delegate = self
         collectionView.collectionViewLayout = layout
     }
+                                                
+    private func preparePresenter() {
+        presenter = GalleryViewPresenter(delegate: self)
+    }
   
     private func fetchGifs() {
-        // fetch gifs
+        presenter?.fetchGifs()
+    }
+}
+
+//MARK: - Gallery View Presenter Output
+
+extension GalleryViewController: GalleryViewPresenterOutput {
+    
+    func gifsFetched(_ newGifs: [Gif]) {
+        gifs.append(contentsOf: newGifs)
+        reloadCollection()
+    }
+    
+    private func reloadCollection() {
+        collectionView.collectionViewLayout.invalidateLayout()
+        let layout = MosaicLayout()
+        collectionView.collectionViewLayout = layout
+        collectionView.reloadData()
     }
 }
 
@@ -57,6 +79,7 @@ extension GalleryViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == gifs.count - 20 {
             print("The end is near 🔔")
+            presenter?.fetchGifs()
         }
     }
 }
