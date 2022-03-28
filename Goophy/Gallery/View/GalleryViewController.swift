@@ -15,7 +15,6 @@ class GalleryViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
-        prepareCollection()
         preparePresenter()
         fetchGifs()
     }
@@ -23,13 +22,7 @@ class GalleryViewController: UICollectionViewController {
     private func prepareUI() {
         title = "Goophy Gifs"
     }
-    
-    private func prepareCollection() {
-        let layout = MosaicLayout()
-        layout.delegate = self
-        collectionView.collectionViewLayout = layout
-    }
-                                                
+                                          
     private func preparePresenter() {
         presenter = GalleryViewPresenter(delegate: self)
     }
@@ -51,6 +44,7 @@ extension GalleryViewController: GalleryViewPresenterOutput {
     private func reloadCollection() {
         collectionView.collectionViewLayout.invalidateLayout()
         let layout = MosaicLayout()
+        layout.delegate = self
         collectionView.collectionViewLayout = layout
         collectionView.reloadData()
     }
@@ -88,7 +82,7 @@ extension GalleryViewController {
 
 extension GalleryViewController: MosaicLayoutDelegate {
     
-    public func heightForGif(at indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
+    func heightForGif(at indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
         let gifHeight = calculateHeight(for: gifs[indexPath.row], scaledToWidth: cellWidth)
         return gifHeight
     }

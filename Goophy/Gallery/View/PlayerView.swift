@@ -1,0 +1,30 @@
+//
+//  PlayerView.swift
+//  Goophy
+//
+//  Created by Vadim Shalugin on 28.03.2022.
+//
+
+import AVKit
+import UIKit
+
+class PlayerView: UIView {
+
+    override static var layerClass: AnyClass {
+        return AVPlayerLayer.self
+    }
+
+    var playerLayer: AVPlayerLayer {
+        return layer as! AVPlayerLayer
+    }
+
+    var player: AVPlayer? {
+        get {
+            return playerLayer.player
+        }
+
+        set {
+            playerLayer.player = newValue
+        }
+    }
+}
