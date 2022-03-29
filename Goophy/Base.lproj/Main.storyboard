@@ -29,12 +29,26 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w9m-zE-cdM" customClass="GIFImageView" customModule="Gifu">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="w9m-zE-cdM" firstAttribute="leading" secondItem="lir-Bj-6Qn" secondAttribute="leading" id="3Mh-u3-B5f"/>
+                                    <constraint firstAttribute="trailing" secondItem="w9m-zE-cdM" secondAttribute="trailing" id="B3b-MH-Yxg"/>
+                                    <constraint firstAttribute="bottom" secondItem="w9m-zE-cdM" secondAttribute="bottom" id="D2t-PY-pjj"/>
+                                    <constraint firstItem="w9m-zE-cdM" firstAttribute="top" secondItem="lir-Bj-6Qn" secondAttribute="top" id="m29-6a-fTD"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="imageView" destination="w9m-zE-cdM" id="qNe-1I-b3t"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -46,7 +60,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AqA-1s-uLs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1124" y="179.46026986506749"/>
+            <point key="canvasLocation" x="1123.1884057971015" y="178.79464285714286"/>
         </scene>
         <!--Gif View Controller-->
         <scene sceneID="g9g-aS-8aQ">

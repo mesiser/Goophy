@@ -5,6 +5,7 @@
 //  Created by Vadim Shalugin on 28.03.2022.
 //
 
+import Nuke
 import UIKit
 
 class GalleryViewController: UICollectionViewController {
@@ -12,6 +13,19 @@ class GalleryViewController: UICollectionViewController {
     private var gifs: [Gif] = []
     private var presenter: GalleryViewPresenter?
     private var reachedLimit = false
+    
+    let cellSpacing: CGFloat = 1
+    let columns: CGFloat = 2
+    var cellSize: CGFloat = 0
+    
+    var pixelSize: CGFloat {
+      return cellSize * UIScreen.main.scale
+    }
+
+    var resizedImageProcessors: [ImageProcessing] {
+        let imageSize = CGSize(width: pixelSize, height: pixelSize)
+        return [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +36,15 @@ class GalleryViewController: UICollectionViewController {
     
     private func prepareUI() {
         title = "Goophy Gifs"
+    }
+    
+    private func preparePipeline() {
+        let pipeline = ImagePipeline {
+        let dataCache = try? DataCache(name: "com.shalugin.Goophy")
+            dataCache?.sizeLimit = 200 * 1024 * 1024
+            $0.dataCache = dataCache
+        }
+        ImagePipeline.shared = pipeline
     }
                                           
     private func preparePresenter() {
@@ -44,11 +67,12 @@ extension GalleryViewController: GalleryViewPresenterOutput {
     }
     
     private func reloadCollection() {
-        collectionView.collectionViewLayout.invalidateLayout()
-        let layout = MosaicLayout()
-        layout.delegate = self
-        collectionView.collectionViewLayout = layout
-        collectionView.reloadData()
+        
+//            self.collectionView.collectionViewLayout.invalidateLayout()
+//            let layout = MosaicLayout()
+//            layout.delegate = self
+//            self.collectionView.collectionViewLayout = layout
+        self.collectionView.reloadData()
     }
 }
 
@@ -67,8 +91,15 @@ extension GalleryViewController {
         else {
             return UICollectionViewCell()
         }
+
+        let request = ImageRequest(
+          url: url,
+          processors: resizedImageProcessors)
+
+        Nuke.loadImage(with: request, into: cell.imageView)
         
         cell.play(url: url)
+        
         return cell
     }
 
@@ -84,20 +115,41 @@ extension GalleryViewController {
 
 //MARK: - Collection View Flow Layout
 
-extension GalleryViewController: MosaicLayoutDelegate {
-    
-    func heightForGif(at indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
-        let gifHeight = calculateHeight(for: gifs[indexPath.row], scaledToWidth: cellWidth)
-        return gifHeight
+extension GalleryViewController: UICollectionViewDelegateFlowLayout {
+  
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            let emptySpace = layout.sectionInset.left + layout.sectionInset.right + (columns * cellSpacing - 1)
+            cellSize = (view.frame.size.width - emptySpace) / columns
+            return CGSize(width: cellSize, height: cellSize)
+        }
+        return CGSize()
     }
 
-    private func calculateHeight(for gif: Gif, scaledToWidth: CGFloat) -> CGFloat {
-        let oldWidth = CGFloat(Float(gif.width) ?? 0)
-        let scaleFactor = scaledToWidth / oldWidth
-        let newHeight = CGFloat(Float(gif.height) ?? 0) * scaleFactor
-        return newHeight
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
     }
 }
+
+//
+//extension GalleryViewController: MosaicLayoutDelegate {
+//
+//    func heightForGif(at indexPath: IndexPath, cellWidth: CGFloat) -> CGFloat {
+//        let gifHeight = calculateHeight(for: gifs[indexPath.row], scaledToWidth: cellWidth)
+//        return gifHeight
+//    }
+//
+//    private func calculateHeight(for gif: Gif, scaledToWidth: CGFloat) -> CGFloat {
+//        let oldWidth = CGFloat(Float(gif.width) ?? 0)
+//        let scaleFactor = scaledToWidth / oldWidth
+//        let newHeight = CGFloat(Float(gif.height) ?? 0) * scaleFactor
+//        return newHeight
+//    }
+//}
 
 //MARK: - Collection View Delegate Methods
 

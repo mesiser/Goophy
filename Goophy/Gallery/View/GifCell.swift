@@ -5,39 +5,31 @@
 //  Created by Vadim Shalugin on 28.03.2022.
 //
 
-import AVFoundation
+import Gifu
 import UIKit
 
 final class GifCell: UICollectionViewCell {
     
-    private var videoPlayer: AVPlayer? = nil
-  
-    private lazy var playerView: PlayerView = {
-        var player = PlayerView()
-        player.backgroundColor = .random
-        return player
-    }()
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        contentView.addSubview(playerView)
-        playerView.translatesAutoresizingMaskIntoConstraints = false
-        playerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        playerView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        playerView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        playerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-    }
-  
+    @IBOutlet weak var imageView: GIFImageView!
+    
     func play(url: URL) {
+        imageView.backgroundColor = .random
+        imageView.startAnimatingGIF()
+    }
+    
+    override func prepareForReuse() {
+        imageView.prepareForReuse()
+        imageView.image = nil
+    }
+}
 
-        videoPlayer = AVPlayer(url: url)
-        videoPlayer?.playImmediately(atRate: 1)
-        playerView.player = videoPlayer
-        playerView.playerLayer.videoGravity = .resizeAspectFill
-
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.playerView.player?.currentItem, queue: .main) { [weak self] _ in
-            self?.playerView.player?.seek(to: CMTime.zero)
-            self?.playerView.player?.play()
+extension Gifu.GIFImageView {
+    public override func nuke_display(image: UIImage?, data: Data? = nil) {
+        prepareForReuse()
+        if let data = data {
+            animate(withGIFData: data)
+        } else {
+            self.image = image
         }
     }
 }
