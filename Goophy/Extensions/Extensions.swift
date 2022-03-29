@@ -5,6 +5,7 @@
 //  Created by Vadim Shalugin on 28.03.2022.
 //
 
+import Gifu
 import UIKit
 
 extension Collection {
@@ -15,13 +16,24 @@ extension Collection {
 }
 
 extension UIColor {
-    static var random: UIColor {
-        return UIColor(
-            red: .random(in: 0...1),
-            green: .random(in: 0...1),
-            blue: .random(in: 0...1),
-            alpha: 1.0
+    
+    static var randomTuple: (UIColor, UIColor) {
+        let randomNumberOne = Float.random(in: 0 ..< 1)
+        let randomNumberTwo = Float.random(in: 0 ..< 1)
+        let randomNumberThree = Float.random(in: 0 ..< 1)
+        let colorOne = UIColor(
+            red: CGFloat(randomNumberOne),
+            green: CGFloat(randomNumberTwo),
+            blue: CGFloat(randomNumberThree),
+            alpha: 1
         )
+        let colorTwo = UIColor(
+            red: CGFloat(randomNumberOne - 0.1),
+            green: CGFloat(randomNumberTwo - 0.1),
+            blue: CGFloat(randomNumberThree - 0.1),
+            alpha: 1
+        )
+        return (colorOne, colorTwo)
     }
 }
 
@@ -46,5 +58,16 @@ extension UIViewController {
     
     static func instantiate(fromAppStoryboard appStoryboard: AppStoryboard) -> Self {
         return appStoryboard.viewController(viewControllerClass: self)
+    }
+}
+
+extension Gifu.GIFImageView {
+    public override func nuke_display(image: UIImage?, data: Data? = nil) {
+        prepareForReuse()
+        if let data = data {
+            animate(withGIFData: data)
+        } else {
+            self.image = image
+        }
     }
 }

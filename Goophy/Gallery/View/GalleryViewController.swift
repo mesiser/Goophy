@@ -83,10 +83,17 @@ extension GalleryViewController {
           url: url,
           processors: imageProcessors(for: gifs[indexPath.row])
         )
-
-        Nuke.loadImage(with: request, into: cell.imageView)
         
-        cell.play(url: url)
+        cell.shimmer()
+
+        Nuke.loadImage(with: request, into: cell.imageView) { result in
+            switch result {
+            case .success:
+                cell.removeGradient()
+            default:
+                break
+            }
+        }
         
         return cell
     }
