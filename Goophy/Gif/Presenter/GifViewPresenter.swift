@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-enum OperationResult {
+enum SaveOperationResult {
     case success
     case error(String)
 }
@@ -19,7 +19,7 @@ protocol GifViewPresenterInput {
 }
 
 protocol GifViewPresenterOutput: AnyObject {
-    func gifSaved(outcome: OperationResult)
+    func gifSavedWith(outcome: SaveOperationResult)
     func copiedToClipboard()
 }
 
@@ -49,10 +49,10 @@ extension GifViewPresenter {
                     }) { (success, error) in
                         DispatchQueue.main.async {
                             if let error = error {
-                                self.delegate?.gifSaved(outcome: .error(error.localizedDescription))
+                                self.delegate?.gifSavedWith(outcome: .error(error.localizedDescription))
                             } else {
                                 self.vibrate()
-                                self.delegate?.gifSaved(outcome: .success)
+                                self.delegate?.gifSavedWith(outcome: .success)
                             }
                         }
                     }

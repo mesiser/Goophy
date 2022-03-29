@@ -39,7 +39,7 @@ class GalleryViewController: UICollectionViewController {
     }
   
     private func fetchGifs() {
-        presenter?.fetchGifs()
+        presenter?.fetchGifs(for: .tranding)
     }
 }
 
@@ -47,10 +47,17 @@ class GalleryViewController: UICollectionViewController {
 
 extension GalleryViewController: GalleryViewPresenterOutput {
     
-    func gifsFetched(_ newGifs: [Gif], reachedLimit: Bool) {
-        self.reachedLimit = reachedLimit
-        gifs.append(contentsOf: newGifs)
-        reloadCollection()
+    func gifsFetchedWith(outcome: GifFetchResult, reachedLimit: Bool) {
+        switch outcome {
+        case .success(let newGifs):
+            self.reachedLimit = reachedLimit
+            gifs.append(contentsOf: newGifs)
+            reloadCollection()
+        case .error(let message):
+            let ac = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
     }
     
     private func reloadCollection() {
@@ -80,8 +87,8 @@ extension GalleryViewController {
         }
 
         let request = ImageRequest(
-          url: url,
-          processors: imageProcessors(for: gifs[indexPath.row])
+            url: url,
+            processors: imageProcessors(for: gifs[indexPath.row])
         )
         
         cell.shimmer()
@@ -101,7 +108,7 @@ extension GalleryViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == gifs.count - 20, !reachedLimit {
             DispatchQueue.global(qos: .utility).async {
-                self.presenter?.fetchGifs()
+                self.presenter?.fetchGifs(for: .tranding)
             }
         }
     }
