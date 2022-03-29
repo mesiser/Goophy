@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DDE9E60827F3217000788D76 /* GifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE9E60727F3217000788D76 /* GifViewController.swift */; };
 		DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7162627F1C9E200A82028 /* AppDelegate.swift */; };
 		DDF7162E27F1C9E200A82028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF7162C27F1C9E200A82028 /* Main.storyboard */; };
 		DDF7163027F1C9E600A82028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF7162F27F1C9E600A82028 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DDE9E60727F3217000788D76 /* GifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewController.swift; sourceTree = "<group>"; };
 		DDF7162327F1C9E200A82028 /* Goophy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goophy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF7162627F1C9E200A82028 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF7162D27F1C9E200A82028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DDE9E60927F3217600788D76 /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				DDE9E60727F3217000788D76 /* GifViewController.swift */,
+			);
+			path = Gif;
+			sourceTree = "<group>";
+		};
 		DDF7161A27F1C9E200A82028 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 			children = (
 				DDF7162627F1C9E200A82028 /* AppDelegate.swift */,
 				DDF7166A27F2666E00A82028 /* Gallery */,
+				DDE9E60927F3217600788D76 /* Gif */,
 				DDF7166527F2663F00A82028 /* NetworkLayer */,
 				DDF7166B27F2668900A82028 /* Extensions */,
 				DDF7162C27F1C9E200A82028 /* Main.storyboard */,
@@ -229,6 +240,7 @@
 				DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */,
 				DDF7165627F25A5100A82028 /* GalleryViewController.swift in Sources */,
 				DDF7165E27F2614300A82028 /* GifCell.swift in Sources */,
+				DDE9E60827F3217000788D76 /* GifViewController.swift in Sources */,
 				DDF7165827F25B8900A82028 /* MosaicFlowLayout.swift in Sources */,
 				DDF7165A27F25C5D00A82028 /* Extensions.swift in Sources */,
 				DDF7165C27F25D6900A82028 /* GifResponse.swift in Sources */,

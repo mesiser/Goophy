@@ -26,13 +26,15 @@ struct GifResponse: Codable {
         let images: Image
 
         struct Image: Codable {
-            let original: Original
+            let original: Data
+            let downsized: Data
             
             enum CodingKeys: String, CodingKey {
-                case original = "downsized"
+                case original = "downsized_medium"
+                case downsized = "downsized"
             }
 
-            struct Original: Codable {
+            struct Data: Codable {
                 let url: String?
                 let height: String
                 let width: String

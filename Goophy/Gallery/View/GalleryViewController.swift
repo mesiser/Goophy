@@ -74,7 +74,7 @@ extension GalleryViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCell", for: indexPath) as? GifCell,
-            let url = gifs[indexPath.row].videoURL
+            let url = gifs[indexPath.row].downsized.videoURL
         else {
             return UICollectionViewCell()
         }
@@ -101,8 +101,8 @@ extension GalleryViewController {
     
     private func imageProcessors(for gif: Gif) -> [ImageProcessing] {
         
-        let width = CGFloat(Float(gif.width) ?? 0)
-        let height = CGFloat(Float(gif.height) ?? 0)
+        let width = CGFloat(Float(gif.downsized.width) ?? 0)
+        let height = CGFloat(Float(gif.downsized.height) ?? 0)
         let imageSize = CGSize(width: width, height: height)
         let resizedImageProcessors: [ImageProcessing] = [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
        
@@ -120,9 +120,9 @@ extension GalleryViewController: MosaicLayoutDelegate {
     }
 
     private func calculateHeight(for gif: Gif, scaledToWidth: CGFloat) -> CGFloat {
-        let oldWidth = CGFloat(Float(gif.width) ?? 0)
+        let oldWidth = CGFloat(Float(gif.downsized.width) ?? 0)
         let scaleFactor = scaledToWidth / oldWidth
-        let newHeight = CGFloat(Float(gif.height) ?? 0) * scaleFactor
+        let newHeight = CGFloat(Float(gif.downsized.height) ?? 0) * scaleFactor
         return newHeight
     }
 }
@@ -132,6 +132,12 @@ extension GalleryViewController: MosaicLayoutDelegate {
 extension GalleryViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // navigate to full view
+
+        let gif = gifs[indexPath.row]
+        let gifViewController = GifViewController.instantiate(fromAppStoryboard: .Main)
+        gifViewController.gif = gif
+        gifViewController.imageProcessors = imageProcessors(for: gif)
+        navigationController?.pushViewController(gifViewController, animated: true)
     }
+    
 }
