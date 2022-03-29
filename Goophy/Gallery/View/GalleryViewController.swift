@@ -13,6 +13,7 @@ class GalleryViewController: UICollectionViewController {
     private var gifs: [Gif] = []
     private var presenter: GalleryViewPresenter?
     private var reachedLimit = false
+    private var selectedCategory: GifCategory = .trending
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,9 @@ class GalleryViewController: UICollectionViewController {
     
     private func prepareUI() {
         title = "Goophy Gifs"
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.tintColor = .systemBackground
+        collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     private func preparePipeline() {
@@ -39,7 +43,15 @@ class GalleryViewController: UICollectionViewController {
     }
   
     private func fetchGifs() {
-        presenter?.fetchGifs(for: .tranding)
+        presenter?.fetchGifs(for: selectedCategory)
+    }
+    
+    @objc
+    func refresh() {
+        gifs = []
+        reachedLimit = false
+        presenter?.resetOffset()
+        presenter?.fetchGifs(for: selectedCategory)
     }
 }
 
@@ -48,6 +60,7 @@ class GalleryViewController: UICollectionViewController {
 extension GalleryViewController: GalleryViewPresenterOutput {
     
     func gifsFetchedWith(outcome: GifFetchResult, reachedLimit: Bool) {
+        collectionView.refreshControl?.endRefreshing()
         switch outcome {
         case .success(let newGifs):
             self.reachedLimit = reachedLimit
@@ -62,11 +75,11 @@ extension GalleryViewController: GalleryViewPresenterOutput {
     
     private func reloadCollection() {
         
-        self.collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.collectionViewLayout.invalidateLayout()
         let layout = MosaicLayout()
         layout.delegate = self
-        self.collectionView.collectionViewLayout = layout
-        self.collectionView.reloadData()
+        collectionView.collectionViewLayout = layout
+        collectionView.reloadData()
     }
 }
 
@@ -108,7 +121,7 @@ extension GalleryViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == gifs.count - 20, !reachedLimit {
             DispatchQueue.global(qos: .utility).async {
-                self.presenter?.fetchGifs(for: .tranding)
+                self.presenter?.fetchGifs(for: self.selectedCategory)
             }
         }
     }

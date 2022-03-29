@@ -12,13 +12,13 @@ final class GifDataService: GifProvider {
     static let token: String = "XnCTUKHtVWAjWLaceyk1WG9IGBvcOY0B"
     
     enum GifCatergory: String {
-        case tranding
-        case cats
+        case trending
         case celebrities
+        case cats
         
         var url: String {
             switch self {
-            case .tranding:
+            case .trending:
                 return "https://api.giphy.com/v1/gifs/trending?api_key=\(token)"
             default:
                 return "https://api.giphy.com/v1/gifs/search?api_key=\(token)&q=\(self.rawValue)"
@@ -28,7 +28,7 @@ final class GifDataService: GifProvider {
     
     var currentOffset = 0
     
-    func fetchGifs(for category: GifCatergory,completionHandler: @escaping (GifResponse?, FailedResponse?) -> Void) {
+    func fetchGifs(for category: GifCatergory, completionHandler: @escaping (GifResponse?, FailedResponse?) -> Void) {
         guard
             let url = URL(string: category.url + "&limit=\(gifsPerPage)&offset=\(currentOffset)")
         else {
