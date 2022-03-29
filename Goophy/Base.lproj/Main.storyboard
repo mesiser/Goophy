@@ -89,18 +89,50 @@
                                     </collectionView>
                                 </subviews>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISy-oM-z9c">
+                                <rect key="frame" x="354" y="802" width="40" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5f-WS-e9z">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="2by-D6-21p"/>
+                                            <constraint firstAttribute="height" constant="40" id="93S-QR-8Eb"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="arrow.up" catalog="system"/>
+                                        <connections>
+                                            <action selector="arrowUpTapped:" destination="aNz-aa-nHg" eventType="touchUpInside" id="i17-KI-nT7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstItem="E5f-WS-e9z" firstAttribute="top" secondItem="ISy-oM-z9c" secondAttribute="top" id="Eyn-5t-S10"/>
+                                    <constraint firstAttribute="trailing" secondItem="E5f-WS-e9z" secondAttribute="trailing" id="cbg-ge-5LG"/>
+                                    <constraint firstItem="E5f-WS-e9z" firstAttribute="leading" secondItem="ISy-oM-z9c" secondAttribute="leading" id="hFJ-P0-cIS"/>
+                                    <constraint firstAttribute="bottom" secondItem="E5f-WS-e9z" secondAttribute="bottom" id="uio-jy-xLu"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zpV-1e-tOc"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
                         <constraints>
+                            <constraint firstItem="zpV-1e-tOc" firstAttribute="bottom" secondItem="ISy-oM-z9c" secondAttribute="bottom" constant="20" id="HpH-hz-xta"/>
                             <constraint firstItem="zpV-1e-tOc" firstAttribute="trailing" secondItem="GQu-5X-uId" secondAttribute="trailing" id="JNw-Qr-Gnp"/>
                             <constraint firstItem="GQu-5X-uId" firstAttribute="top" secondItem="zpV-1e-tOc" secondAttribute="top" id="hh6-IM-i9X"/>
+                            <constraint firstItem="zpV-1e-tOc" firstAttribute="trailing" secondItem="ISy-oM-z9c" secondAttribute="trailing" constant="20" id="i23-fZ-XAA"/>
                             <constraint firstItem="zpV-1e-tOc" firstAttribute="bottom" secondItem="GQu-5X-uId" secondAttribute="bottom" id="ovn-mo-a3y"/>
                             <constraint firstItem="GQu-5X-uId" firstAttribute="leading" secondItem="YtS-ET-jSU" secondAttribute="leading" id="uaS-c9-8R4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rMY-WB-xJW"/>
                     <connections>
+                        <outlet property="arrowView" destination="ISy-oM-z9c" id="yA6-qC-ylf"/>
                         <outlet property="collectionView" destination="dUn-dv-kT4" id="MtS-Ht-hEC"/>
                     </connections>
                 </viewController>
@@ -235,6 +267,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up" catalog="system" width="120" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
