@@ -37,6 +37,8 @@ class GifProvider {
             let decoder = JSONDecoder()
             var failed: GifProvider.FailedResponse?
             
+            self.log(data)
+            
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 failed = try? decoder.decode(FailedResponse.self, from: data)
                 if failed?.message == nil {
@@ -67,5 +69,14 @@ class GifProvider {
             }
         }
         task.resume()
+    }
+    
+    private func log(_ data: Data) {
+        
+        #if DEBUG
+        if let utf8Text = data.prettyPrintedJSONString {
+            print("\(utf8Text)\n")
+        }
+        #endif
     }
 }

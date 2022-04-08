@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD140B4E27FDF5EC00F40582 /* GoophySlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD140B4D27FDF5EC00F40582 /* GoophySlowTests.swift */; };
 		DD9B9B0127F3280900787260 /* GifViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9B9B0027F3280900787260 /* GifViewPresenter.swift */; };
 		DD9B9B0727F3654000787260 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9B9B0627F3654000787260 /* GalleryViewController.swift */; };
 		DDE9E60827F3217000788D76 /* GifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE9E60727F3217000788D76 /* GifViewController.swift */; };
@@ -25,7 +26,22 @@
 		DDF7167327F290EF00A82028 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = DDF7167227F290EF00A82028 /* Nuke */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DD140B4F27FDF5EC00F40582 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF7161B27F1C9E200A82028 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDF7162227F1C9E200A82028;
+			remoteInfo = Goophy;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		DD140B1327FDE12500F40582 /* GoophyUinitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoophyUinitTests.swift; sourceTree = "<group>"; };
+		DD140B4B27FDF5EC00F40582 /* GoophySlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoophySlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD140B4D27FDF5EC00F40582 /* GoophySlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoophySlowTests.swift; sourceTree = "<group>"; };
+		DD140B5627FDFD6900F40582 /* GifUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifUnitTests.swift; sourceTree = "<group>"; };
+		DD140B5827FDFD9900F40582 /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
 		DD9B9B0027F3280900787260 /* GifViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewPresenter.swift; sourceTree = "<group>"; };
 		DD9B9B0627F3654000787260 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		DDE9E60727F3217000788D76 /* GifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +61,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DD140B4827FDF5EC00F40582 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDF7162027F1C9E200A82028 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,6 +80,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD140B1227FDE12500F40582 /* GoophyUinitTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD140B5827FDFD9900F40582 /* ParsingTests.swift */,
+				DD140B5627FDFD6900F40582 /* GifUnitTests.swift */,
+				DD140B1327FDE12500F40582 /* GoophyUinitTests.swift */,
+			);
+			path = GoophyUinitTests;
+			sourceTree = "<group>";
+		};
+		DD140B4C27FDF5EC00F40582 /* GoophySlowTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD140B4D27FDF5EC00F40582 /* GoophySlowTests.swift */,
+			);
+			path = GoophySlowTests;
+			sourceTree = "<group>";
+		};
 		DD9B9B0227F3308900787260 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				DDF7162527F1C9E200A82028 /* Goophy */,
+				DD140B1227FDE12500F40582 /* GoophyUinitTests */,
+				DD140B4C27FDF5EC00F40582 /* GoophySlowTests */,
 				DDF7162427F1C9E200A82028 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF7162327F1C9E200A82028 /* Goophy.app */,
+				DD140B4B27FDF5EC00F40582 /* GoophySlowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +222,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DD140B4A27FDF5EC00F40582 /* GoophySlowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD140B5127FDF5EC00F40582 /* Build configuration list for PBXNativeTarget "GoophySlowTests" */;
+			buildPhases = (
+				DD140B4727FDF5EC00F40582 /* Sources */,
+				DD140B4827FDF5EC00F40582 /* Frameworks */,
+				DD140B4927FDF5EC00F40582 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD140B5027FDF5EC00F40582 /* PBXTargetDependency */,
+			);
+			name = GoophySlowTests;
+			productName = GoophySlowTests;
+			productReference = DD140B4B27FDF5EC00F40582 /* GoophySlowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DDF7162227F1C9E200A82028 /* Goophy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDF7163727F1C9E600A82028 /* Build configuration list for PBXNativeTarget "Goophy" */;
@@ -209,6 +271,10 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					DD140B4A27FDF5EC00F40582 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = DDF7162227F1C9E200A82028;
+					};
 					DDF7162227F1C9E200A82028 = {
 						CreatedOnToolsVersion = 13.3;
 					};
@@ -232,11 +298,19 @@
 			projectRoot = "";
 			targets = (
 				DDF7162227F1C9E200A82028 /* Goophy */,
+				DD140B4A27FDF5EC00F40582 /* GoophySlowTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DD140B4927FDF5EC00F40582 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDF7162127F1C9E200A82028 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,6 +324,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DD140B4727FDF5EC00F40582 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD140B4E27FDF5EC00F40582 /* GoophySlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDF7161F27F1C9E200A82028 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,6 +351,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD140B5027FDF5EC00F40582 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDF7162227F1C9E200A82028 /* Goophy */;
+			targetProxy = DD140B4F27FDF5EC00F40582 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DDF7162C27F1C9E200A82028 /* Main.storyboard */ = {
@@ -290,6 +380,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DD140B5227FDF5EC00F40582 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2QFAHY4PT3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shalugin.GoophySlowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Goophy.app/Goophy";
+			};
+			name = Debug;
+		};
+		DD140B5327FDF5EC00F40582 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2QFAHY4PT3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shalugin.GoophySlowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Goophy.app/Goophy";
+			};
+			name = Release;
+		};
 		DDF7163527F1C9E600A82028 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -345,7 +471,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -465,6 +591,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DD140B5127FDF5EC00F40582 /* Build configuration list for PBXNativeTarget "GoophySlowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD140B5227FDF5EC00F40582 /* Debug */,
+				DD140B5327FDF5EC00F40582 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DDF7161E27F1C9E200A82028 /* Build configuration list for PBXProject "Goophy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
