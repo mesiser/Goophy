@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7162627F1C9E200A82028 /* AppDelegate.swift */; };
-		DDF7162B27F1C9E200A82028 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7162A27F1C9E200A82028 /* ViewController.swift */; };
 		DDF7162E27F1C9E200A82028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF7162C27F1C9E200A82028 /* Main.storyboard */; };
 		DDF7163027F1C9E600A82028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF7162F27F1C9E600A82028 /* Assets.xcassets */; };
 		DDF7163327F1C9E600A82028 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF7163127F1C9E600A82028 /* LaunchScreen.storyboard */; };
+		DDF7165627F25A5100A82028 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7165527F25A5100A82028 /* GalleryViewController.swift */; };
+		DDF7165827F25B8900A82028 /* MosaicFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7165727F25B8900A82028 /* MosaicFlowLayout.swift */; };
+		DDF7165A27F25C5D00A82028 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7165927F25C5D00A82028 /* Extensions.swift */; };
+		DDF7165C27F25D6900A82028 /* GifResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7165B27F25D6900A82028 /* GifResponse.swift */; };
+		DDF7165E27F2614300A82028 /* GifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7165D27F2614300A82028 /* GifCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DDF7162327F1C9E200A82028 /* Goophy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goophy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF7162627F1C9E200A82028 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DDF7162A27F1C9E200A82028 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DDF7162D27F1C9E200A82028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDF7162F27F1C9E600A82028 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF7163227F1C9E600A82028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDF7163427F1C9E600A82028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDF7165527F25A5100A82028 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		DDF7165727F25B8900A82028 /* MosaicFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicFlowLayout.swift; sourceTree = "<group>"; };
+		DDF7165927F25C5D00A82028 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DDF7165B27F25D6900A82028 /* GifResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifResponse.swift; sourceTree = "<group>"; };
+		DDF7165D27F2614300A82028 /* GifCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +62,12 @@
 		DDF7162527F1C9E200A82028 /* Goophy */ = {
 			isa = PBXGroup;
 			children = (
+				DDF7165927F25C5D00A82028 /* Extensions.swift */,
 				DDF7162627F1C9E200A82028 /* AppDelegate.swift */,
-				DDF7162A27F1C9E200A82028 /* ViewController.swift */,
+				DDF7165B27F25D6900A82028 /* GifResponse.swift */,
+				DDF7165D27F2614300A82028 /* GifCell.swift */,
+				DDF7165527F25A5100A82028 /* GalleryViewController.swift */,
+				DDF7165727F25B8900A82028 /* MosaicFlowLayout.swift */,
 				DDF7162C27F1C9E200A82028 /* Main.storyboard */,
 				DDF7162F27F1C9E600A82028 /* Assets.xcassets */,
 				DDF7163127F1C9E600A82028 /* LaunchScreen.storyboard */,
@@ -135,8 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDF7162B27F1C9E200A82028 /* ViewController.swift in Sources */,
 				DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */,
+				DDF7165627F25A5100A82028 /* GalleryViewController.swift in Sources */,
+				DDF7165E27F2614300A82028 /* GifCell.swift in Sources */,
+				DDF7165827F25B8900A82028 /* MosaicFlowLayout.swift in Sources */,
+				DDF7165A27F25C5D00A82028 /* Extensions.swift in Sources */,
+				DDF7165C27F25D6900A82028 /* GifResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
