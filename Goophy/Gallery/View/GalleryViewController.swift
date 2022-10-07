@@ -11,6 +11,7 @@ class GalleryViewController: UICollectionViewController {
 
     private var gifs: [Gif] = []
     private var presenter: GalleryViewPresenter?
+    private var reachedLimit = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,8 @@ class GalleryViewController: UICollectionViewController {
 
 extension GalleryViewController: GalleryViewPresenterOutput {
     
-    func gifsFetched(_ newGifs: [Gif]) {
+    func gifsFetched(_ newGifs: [Gif], reachedLimit: Bool) {
+        self.reachedLimit = reachedLimit
         gifs.append(contentsOf: newGifs)
         reloadCollection()
     }
@@ -71,9 +73,11 @@ extension GalleryViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == gifs.count - 20 {
+        if indexPath.row == gifs.count - 20, !reachedLimit {
             print("The end is near 🔔")
-            presenter?.fetchGifs()
+            DispatchQueue.global(qos: .utility).async {
+                self.presenter?.fetchGifs()
+            }
         }
     }
 }
