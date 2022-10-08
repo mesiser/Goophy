@@ -4,7 +4,7 @@
 //
 //  Created by Vadim Shalugin on 28.03.2022.
 //
-typealias Gif = GifResponse.GifObject.Image.Original
+typealias Gif = GifResponse.GifObject.Image
 
 protocol GalleryViewPresenterInput {
     func fetchGifs()
@@ -37,7 +37,7 @@ final class GalleryViewPresenter: GalleryViewPresenterInput {
                 return
             }
 
-            let newItems = response.data.compactMap { $0.images.original }
+            let newItems = response.data.compactMap { $0.images }
             let reachedLimit = newItems.count == 0
             self.gifDataService.currentOffset += self.gifDataService.gifsPerPage
             self.delegate?.gifsFetched(newItems, reachedLimit: reachedLimit)
