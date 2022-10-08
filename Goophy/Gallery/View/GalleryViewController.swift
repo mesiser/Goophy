@@ -11,6 +11,7 @@ import UIKit
 class GalleryViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var arrowView: UIView!
     
     private var gifs: [Gif] = []
     private var presenter: GalleryViewPresenter?
@@ -27,6 +28,11 @@ class GalleryViewController: UIViewController {
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         selectedCategory = .init(from: sender.selectedSegmentIndex)
         refresh()
+    }
+    
+    @IBAction func arrowUpTapped(_ sender: Any) {
+        collectionView.setContentOffset(.zero, animated: true)
+        makeArrowView(visible: false)
     }
     
     private func prepareUI() {
@@ -56,10 +62,15 @@ class GalleryViewController: UIViewController {
     @objc
     func refresh() {
         gifs = []
+        makeArrowView(visible: false)
         collectionView.reloadData()
         reachedLimit = false
         presenter?.resetOffset()
         presenter?.fetchGifs(for: selectedCategory)
+    }
+    
+    private func makeArrowView(visible: Bool) {
+        arrowView.isHidden = !visible
     }
 }
 
@@ -132,6 +143,9 @@ extension GalleryViewController: UICollectionViewDataSource {
                 self.presenter?.fetchGifs(for: self.selectedCategory)
             }
         }
+        let offset = collectionView.contentOffset.y
+        let frameHeight = collectionView.frame.height
+        makeArrowView(visible: offset > frameHeight)
     }
     
     private func imageProcessors(for gif: Gif) -> [ImageProcessing] {
