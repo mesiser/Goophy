@@ -5,13 +5,19 @@
 //  Created by Vadim Shalugin on 28.03.2022.
 //
 typealias Gif = GifResponse.GifObject.Image
+typealias GifCategory = GifDataService.GifCatergory
+
+enum GifFetchResult {
+    case success([Gif])
+    case error(String)
+}
 
 protocol GalleryViewPresenterInput {
-    func fetchGifs()
+    func fetchGifs(for category: GifCategory)
 }
 
 protocol GalleryViewPresenterOutput: AnyObject {
-    func gifsFetched(_ newGifs: [Gif], reachedLimit: Bool)
+    func gifsFetchedWith(outcome: GifFetchResult, reachedLimit: Bool)
 }
 
 import Foundation
@@ -26,11 +32,11 @@ final class GalleryViewPresenter: GalleryViewPresenterInput {
         self.delegate = delegate
     }
 
-    func fetchGifs() {
+    func fetchGifs(for category: GifCategory) {
         
-        gifDataService.fetchGifs { [weak self] response, failed in
+        gifDataService.fetchGifs(for: category) { [weak self] response, failed in
             if let failed = failed {
-                print("Failed \(failed.message)")
+                self?.delegate?.gifsFetchedWith(outcome: .error(failed.message ?? "Unknown error"), reachedLimit: false)
             }
             
             guard let self = self, let response = response else {
@@ -40,7 +46,7 @@ final class GalleryViewPresenter: GalleryViewPresenterInput {
             let newItems = response.data.compactMap { $0.images }
             let reachedLimit = newItems.count == 0
             self.gifDataService.currentOffset += self.gifDataService.gifsPerPage
-            self.delegate?.gifsFetched(newItems, reachedLimit: reachedLimit)
+            self.delegate?.gifsFetchedWith(outcome: .success(newItems), reachedLimit: reachedLimit)
         }
     }
 }

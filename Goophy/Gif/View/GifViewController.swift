@@ -104,7 +104,7 @@ final class GifViewController: UIViewController {
 
 extension GifViewController: GifViewPresenterOutput {
     
-    func gifSaved(outcome: OperationResult) {
+    func gifSavedWith(outcome: SaveOperationResult) {
         makeActivityIndicator(visible: false)
         switch outcome {
         case .success:

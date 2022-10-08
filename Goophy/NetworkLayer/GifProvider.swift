@@ -9,8 +9,6 @@ import Foundation
 
 class GifProvider {
     
-    var baseGifUrl: String = "https://api.giphy.com/v1/gifs/trending"
-    let token: String = "XnCTUKHtVWAjWLaceyk1WG9IGBvcOY0B"
     let gifsPerPage: Int = 100
     
     
