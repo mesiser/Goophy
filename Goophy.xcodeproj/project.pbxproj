@@ -19,7 +19,8 @@
 		DDF7166027F262C900A82028 /* GifProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7165F27F262C900A82028 /* GifProvider.swift */; };
 		DDF7166227F262D500A82028 /* GifDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7166127F262D500A82028 /* GifDataService.swift */; };
 		DDF7166427F263AB00A82028 /* GalleryViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7166327F263AB00A82028 /* GalleryViewPresenter.swift */; };
-		DDF7166D27F266D100A82028 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7166C27F266D100A82028 /* PlayerView.swift */; };
+		DDF7167027F2807C00A82028 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = DDF7166F27F2807C00A82028 /* Gifu */; };
+		DDF7167327F290EF00A82028 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = DDF7167227F290EF00A82028 /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +38,6 @@
 		DDF7165F27F262C900A82028 /* GifProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifProvider.swift; sourceTree = "<group>"; };
 		DDF7166127F262D500A82028 /* GifDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDataService.swift; sourceTree = "<group>"; };
 		DDF7166327F263AB00A82028 /* GalleryViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewPresenter.swift; sourceTree = "<group>"; };
-		DDF7166C27F266D100A82028 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF7167027F2807C00A82028 /* Gifu in Frameworks */,
+				DDF7167327F290EF00A82028 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +111,6 @@
 		DDF7166827F2665D00A82028 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DDF7166C27F266D100A82028 /* PlayerView.swift */,
 				DDF7165D27F2614300A82028 /* GifCell.swift */,
 				DDF7165527F25A5100A82028 /* GalleryViewController.swift */,
 				DDF7165727F25B8900A82028 /* MosaicFlowLayout.swift */,
@@ -160,6 +161,10 @@
 			dependencies = (
 			);
 			name = Goophy;
+			packageProductDependencies = (
+				DDF7166F27F2807C00A82028 /* Gifu */,
+				DDF7167227F290EF00A82028 /* Nuke */,
+			);
 			productName = Goophy;
 			productReference = DDF7162327F1C9E200A82028 /* Goophy.app */;
 			productType = "com.apple.product-type.application";
@@ -188,6 +193,10 @@
 				Base,
 			);
 			mainGroup = DDF7161A27F1C9E200A82028;
+			packageReferences = (
+				DDF7166E27F2807C00A82028 /* XCRemoteSwiftPackageReference "Gifu" */,
+				DDF7167127F290EF00A82028 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = DDF7162427F1C9E200A82028 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,7 +227,6 @@
 				DDF7166427F263AB00A82028 /* GalleryViewPresenter.swift in Sources */,
 				DDF7166227F262D500A82028 /* GifDataService.swift in Sources */,
 				DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */,
-				DDF7166D27F266D100A82028 /* PlayerView.swift in Sources */,
 				DDF7165627F25A5100A82028 /* GalleryViewController.swift in Sources */,
 				DDF7165E27F2614300A82028 /* GifCell.swift in Sources */,
 				DDF7165827F25B8900A82028 /* MosaicFlowLayout.swift in Sources */,
@@ -444,6 +452,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DDF7166E27F2807C00A82028 /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DDF7167127F290EF00A82028 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DDF7166F27F2807C00A82028 /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDF7166E27F2807C00A82028 /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
+		};
+		DDF7167227F290EF00A82028 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDF7167127F290EF00A82028 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DDF7161B27F1C9E200A82028 /* Project object */;
 }

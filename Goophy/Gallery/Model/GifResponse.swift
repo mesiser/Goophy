@@ -5,6 +5,7 @@
 //  Created by Vadim Shalugin on 28.03.2022.
 //
 
+import AVKit
 import Foundation
 
 struct GifResponse: Codable {
@@ -26,14 +27,18 @@ struct GifResponse: Codable {
 
         struct Image: Codable {
             let original: Original
+            
+            enum CodingKeys: String, CodingKey {
+                case original = "downsized"
+            }
 
             struct Original: Codable {
-                let mp4: String
+                let url: String?
                 let height: String
                 let width: String
 
                 var videoURL: URL? {
-                  URL(string: mp4)
+                    URL(string: url ?? "")
                 }
             }
         }

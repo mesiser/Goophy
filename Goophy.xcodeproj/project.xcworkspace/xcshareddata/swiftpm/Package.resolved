@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "gifu",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaishin/Gifu.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "b3faac8bf96f11aca616657ba3e054dea3b062c4"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "04953e2cde7022574fda9e91d7cbe9232259bc15"
+      }
+    }
+  ],
+  "version" : 2
+}
