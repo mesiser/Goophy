@@ -14,6 +14,7 @@ enum GifFetchResult {
 
 protocol GalleryViewPresenterInput {
     func fetchGifs(for category: GifCategory)
+    func resetOffset()
 }
 
 protocol GalleryViewPresenterOutput: AnyObject {
@@ -48,5 +49,9 @@ final class GalleryViewPresenter: GalleryViewPresenterInput {
             self.gifDataService.currentOffset += self.gifDataService.gifsPerPage
             self.delegate?.gifsFetchedWith(outcome: .success(newItems), reachedLimit: reachedLimit)
         }
+    }
+    
+    func resetOffset() {
+        gifDataService.currentOffset = 0
     }
 }

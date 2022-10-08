@@ -57,7 +57,9 @@
                             <outlet property="delegate" destination="KGg-BV-ZNR" id="JD7-Zd-zZV"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="klK-lk-RSB"/>
+                    <navigationItem key="navigationItem" id="klK-lk-RSB">
+                        <nil key="title"/>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AqA-1s-uLs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,7 +77,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="808"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7w7-rF-3FI" customClass="GIFImageView" customModule="Gifu">
-                                        <rect key="frame" x="0.0" y="-1" width="414" height="683.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="683"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhD-yg-rka">
                                         <rect key="frame" x="0.0" y="683" width="414" height="60"/>
