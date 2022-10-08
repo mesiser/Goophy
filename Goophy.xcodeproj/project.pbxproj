@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD9B9B0127F3280900787260 /* GifViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9B9B0027F3280900787260 /* GifViewPresenter.swift */; };
 		DDE9E60827F3217000788D76 /* GifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE9E60727F3217000788D76 /* GifViewController.swift */; };
 		DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7162627F1C9E200A82028 /* AppDelegate.swift */; };
 		DDF7162E27F1C9E200A82028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF7162C27F1C9E200A82028 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD9B9B0027F3280900787260 /* GifViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewPresenter.swift; sourceTree = "<group>"; };
 		DDE9E60727F3217000788D76 /* GifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewController.swift; sourceTree = "<group>"; };
 		DDF7162327F1C9E200A82028 /* Goophy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goophy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF7162627F1C9E200A82028 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,10 +57,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DDE9E60927F3217600788D76 /* Gif */ = {
+		DD9B9B0227F3308900787260 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				DDE9E60727F3217000788D76 /* GifViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD9B9B0327F3308D00787260 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DD9B9B0027F3280900787260 /* GifViewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DDE9E60927F3217600788D76 /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				DD9B9B0227F3308900787260 /* View */,
+				DD9B9B0327F3308D00787260 /* Presenter */,
 			);
 			path = Gif;
 			sourceTree = "<group>";
@@ -239,6 +258,7 @@
 				DDF7166227F262D500A82028 /* GifDataService.swift in Sources */,
 				DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */,
 				DDF7165627F25A5100A82028 /* GalleryViewController.swift in Sources */,
+				DD9B9B0127F3280900787260 /* GifViewPresenter.swift in Sources */,
 				DDF7165E27F2614300A82028 /* GifCell.swift in Sources */,
 				DDE9E60827F3217000788D76 /* GifViewController.swift in Sources */,
 				DDF7165827F25B8900A82028 /* MosaicFlowLayout.swift in Sources */,
