@@ -16,6 +16,17 @@ final class GifDataService: GifProvider {
         case celebrities
         case cats
         
+        init(from tag: Int) {
+            switch tag {
+            case 1:
+                self = .cats
+            case 2:
+                self = .celebrities
+            default:
+                self = .trending
+            }
+        }
+        
         var url: String {
             switch self {
             case .trending:

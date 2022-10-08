@@ -1,15 +1,17 @@
 //
-//  GalleryViewController.swift
+//  GifGalleryViewController.swift
 //  Goophy
 //
-//  Created by Vadim Shalugin on 28.03.2022.
+//  Created by Vadim Shalugin on 29.03.2022.
 //
 
 import Nuke
 import UIKit
 
-class GalleryViewController: UICollectionViewController {
+class GalleryViewController: UIViewController {
 
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
     private var gifs: [Gif] = []
     private var presenter: GalleryViewPresenter?
     private var reachedLimit = false
@@ -20,6 +22,11 @@ class GalleryViewController: UICollectionViewController {
         prepareUI()
         preparePresenter()
         fetchGifs()
+    }
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        selectedCategory = .init(from: sender.selectedSegmentIndex)
+        refresh()
     }
     
     private func prepareUI() {
@@ -49,6 +56,7 @@ class GalleryViewController: UICollectionViewController {
     @objc
     func refresh() {
         gifs = []
+        collectionView.reloadData()
         reachedLimit = false
         presenter?.resetOffset()
         presenter?.fetchGifs(for: selectedCategory)
@@ -85,13 +93,13 @@ extension GalleryViewController: GalleryViewPresenterOutput {
 
 // MARK: - Collection View Data Source Methods
 
-extension GalleryViewController {
+extension GalleryViewController: UICollectionViewDataSource {
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return gifs.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCell", for: indexPath) as? GifCell,
             let url = gifs[indexPath.row].downsized.videoURL
@@ -118,7 +126,7 @@ extension GalleryViewController {
         return cell
     }
 
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == gifs.count - 20, !reachedLimit {
             DispatchQueue.global(qos: .utility).async {
                 self.presenter?.fetchGifs(for: self.selectedCategory)
@@ -156,9 +164,9 @@ extension GalleryViewController: MosaicLayoutDelegate {
 
 //MARK: - Collection View Delegate Methods
 
-extension GalleryViewController {
+extension GalleryViewController: UICollectionViewDelegate {
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let gif = gifs[indexPath.row]
         let gifViewController = GifViewController.instantiate(fromAppStoryboard: .Main)
