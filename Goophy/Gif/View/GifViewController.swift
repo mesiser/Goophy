@@ -25,6 +25,12 @@ final class GifViewController: UIViewController {
         loadGif()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        imageView.prepareForReuse()
+        imageView.image = nil
+    }
+    
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         switch sender.tag {
         case 0:
@@ -43,6 +49,16 @@ final class GifViewController: UIViewController {
     
     private func prepareUI() {
         makeActivityIndicator(visible: false)
+        addShareButton()
+    }
+    
+    private func addShareButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage.init(systemName: "square.and.arrow.up"),
+            style: .plain,
+            target: self,
+            action: #selector(shareTap)
+        )
     }
     
     private func preparePresenter() {
@@ -62,6 +78,25 @@ final class GifViewController: UIViewController {
     private func makeActivityIndicator(visible: Bool) {
         activityIndicator.isHidden = !visible
         visible ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+    }
+    
+    private func shareGifFrom(url: URL) {
+        self.makeActivityIndicator(visible: true)
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let data = try? Data(contentsOf: url) {
+                DispatchQueue.main.async {
+                    self.makeActivityIndicator(visible: false)
+                    let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+                    self.present(activityViewController, animated: true)
+                }
+            }
+        }
+    }
+    
+    @objc
+    func shareTap() {
+        guard let url = gif?.original.videoURL else { return }
+        shareGifFrom(url: url)
     }
 }
 

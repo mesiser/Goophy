@@ -31,6 +31,15 @@ final class GifViewPresenter: GifViewPresenterInput {
         self.delegate = delegate
     }
     
+    private func vibrate() {
+        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+    }
+}
+
+//MARK: - Gif View Presenter Input
+
+extension GifViewPresenter {
+    
     func save(image: UIImage, url: URL) {
 
         DispatchQueue.global(qos: .userInitiated).async {
@@ -42,6 +51,7 @@ final class GifViewPresenter: GifViewPresenterInput {
                             if let error = error {
                                 self.delegate?.gifSaved(outcome: .error(error.localizedDescription))
                             } else {
+                                self.vibrate()
                                 self.delegate?.gifSaved(outcome: .success)
                             }
                         }
@@ -52,6 +62,7 @@ final class GifViewPresenter: GifViewPresenterInput {
     
     func copyToClipboard(link: String) {
         UIPasteboard.general.string = link
+        vibrate()
         delegate?.copiedToClipboard()
     }
 }
