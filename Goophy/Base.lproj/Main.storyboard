@@ -13,7 +13,7 @@
         <!--Gallery View Controller-->
         <scene sceneID="Qif-48-BR7">
             <objects>
-                <viewController id="aNz-aa-nHg" customClass="GalleryViewController" customModule="Goophy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GalleryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aNz-aa-nHg" customClass="GalleryViewController" customModule="Goophy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YtS-ET-jSU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

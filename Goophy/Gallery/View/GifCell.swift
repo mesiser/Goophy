@@ -42,12 +42,16 @@ final class GifCell: UICollectionViewCell {
         animation.repeatCount = .infinity
         animation.duration = 0.5
         gradientLayer?.add(animation, forKey: animation.keyPath)
+        
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
     func removeGradient() {
         imageView.layer.removeAllAnimations()
         gradientLayer?.removeFromSuperlayer()
         gradientLayer = nil
+        layer.shouldRasterize = false
     }
     
     override func prepareForReuse() {
