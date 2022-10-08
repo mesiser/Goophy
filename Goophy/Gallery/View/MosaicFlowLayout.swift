@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MosaicLayoutDelegate: AnyObject {
-    func heightForGif(at indexPath: IndexPath, cellWidth : CGFloat ) -> CGFloat
+    func heightForGif(at indexPath: IndexPath, cellWidth: CGFloat ) -> CGFloat
 }
 
 class MosaicLayout: UICollectionViewFlowLayout {

@@ -19,6 +19,7 @@
 		DDF7166027F262C900A82028 /* GifProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7165F27F262C900A82028 /* GifProvider.swift */; };
 		DDF7166227F262D500A82028 /* GifDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7166127F262D500A82028 /* GifDataService.swift */; };
 		DDF7166427F263AB00A82028 /* GalleryViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7166327F263AB00A82028 /* GalleryViewPresenter.swift */; };
+		DDF7166D27F266D100A82028 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7166C27F266D100A82028 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		DDF7165F27F262C900A82028 /* GifProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifProvider.swift; sourceTree = "<group>"; };
 		DDF7166127F262D500A82028 /* GifDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDataService.swift; sourceTree = "<group>"; };
 		DDF7166327F263AB00A82028 /* GalleryViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewPresenter.swift; sourceTree = "<group>"; };
+		DDF7166C27F266D100A82028 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		DDF7166827F2665D00A82028 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DDF7166C27F266D100A82028 /* PlayerView.swift */,
 				DDF7165D27F2614300A82028 /* GifCell.swift */,
 				DDF7165527F25A5100A82028 /* GalleryViewController.swift */,
 				DDF7165727F25B8900A82028 /* MosaicFlowLayout.swift */,
@@ -215,6 +218,7 @@
 				DDF7166427F263AB00A82028 /* GalleryViewPresenter.swift in Sources */,
 				DDF7166227F262D500A82028 /* GifDataService.swift in Sources */,
 				DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */,
+				DDF7166D27F266D100A82028 /* PlayerView.swift in Sources */,
 				DDF7165627F25A5100A82028 /* GalleryViewController.swift in Sources */,
 				DDF7165E27F2614300A82028 /* GifCell.swift in Sources */,
 				DDF7165827F25B8900A82028 /* MosaicFlowLayout.swift in Sources */,

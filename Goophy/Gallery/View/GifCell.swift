@@ -6,14 +6,13 @@
 //
 
 import AVFoundation
-import AVKit
 import UIKit
 
 final class GifCell: UICollectionViewCell {
     
-    var videoPlayer: AVPlayer? = nil
+    private var videoPlayer: AVPlayer? = nil
   
-    var playerView: PlayerView = {
+    private lazy var playerView: PlayerView = {
         var player = PlayerView()
         player.backgroundColor = .random
         return player
@@ -39,28 +38,6 @@ final class GifCell: UICollectionViewCell {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: self.playerView.player?.currentItem, queue: .main) { [weak self] _ in
             self?.playerView.player?.seek(to: CMTime.zero)
             self?.playerView.player?.play()
-        }
-    }
-}
-
-
-class PlayerView: UIView {
-
-    override static var layerClass: AnyClass {
-        return AVPlayerLayer.self
-    }
-
-    var playerLayer: AVPlayerLayer {
-        return layer as! AVPlayerLayer
-    }
-
-    var player: AVPlayer? {
-        get {
-            return playerLayer.player
-        }
-
-        set {
-            playerLayer.player = newValue
         }
     }
 }
