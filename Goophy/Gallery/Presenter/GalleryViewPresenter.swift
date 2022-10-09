@@ -38,19 +38,18 @@ final class GalleryViewPresenter: GalleryViewPresenterInput {
     func fetchGifs(for category: GifCategory) {
         
         gifDataService.fetchGifs(for: category)
-            .sink { receiveCompletion in
-                switch receiveCompletion {
-                case .finished:
-                    print("Finished")
+            .sink { [weak self] result in
+                switch result {
+                case .success(let response):
+                    let newItems = response.data.compactMap { $0.images }
+                    let reachedLimit = newItems.count == 0
+                    self?.gifDataService.increaseOffset()
+                    self?.delegate?.gifsFetchedWith(outcome: .success(newItems), reachedLimit: reachedLimit)
                 case .failure(let error):
-                    print("Error \(error)")
+                    self?.delegate?.gifsFetchedWith(outcome: .error(error.localizedDescription), reachedLimit: false)
                 }
-            } receiveValue: { [weak self] response in
-                let newItems = response.data.compactMap { $0.images }
-                let reachedLimit = newItems.count == 0
-                self?.gifDataService.increaseOffset()
-                self?.delegate?.gifsFetchedWith(outcome: .success(newItems), reachedLimit: reachedLimit)
-            }.store(in: &anyCancellable)
+            }
+            .store(in: &anyCancellable)
     }
     
     func resetOffset() {

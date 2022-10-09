@@ -5,8 +5,11 @@
 //  Created by Vadim Shalugin on 28.03.2022.
 //
 
+import Combine
 import Gifu
 import UIKit
+
+typealias Handler<T> = (T) -> Void
 
 extension Collection {
     
@@ -81,6 +84,18 @@ extension Data {
 
         return prettyPrintedString
     }
-    
+}
+
+extension Publisher {
+    func sink(result: @escaping Handler<Result<Output, Failure>>) -> AnyCancellable {
+        sink { comlpetion in
+            guard case let .failure(error) = comlpetion else {
+                return
+            }
+            result(.failure(error))
+        } receiveValue: {
+            result(.success($0))
+        }
+    }
 }
 

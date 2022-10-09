@@ -14,8 +14,7 @@ final class GifDataService: GifProvider {
         static let token: String = "XnCTUKHtVWAjWLaceyk1WG9IGBvcOY0B"
         static let gifsPerPage: Int = 100
     }
-    private var anyCancellable = Set<AnyCancellable>()
-
+    
     enum GifCatergory: String {
         case trending
         case celebrities
@@ -44,8 +43,8 @@ final class GifDataService: GifProvider {
         }
     }
     
-    var currentOffset = 0
-        
+    private var currentOffset = 0
+
     func fetchGifs(for category: GifCatergory) -> AnyPublisher<GifResponse, Error> {
         guard
             let url = URL(string: category.url + "&limit=\(Constants.gifsPerPage)&offset=\(currentOffset)")
@@ -54,7 +53,7 @@ final class GifDataService: GifProvider {
         }
         var request = requestFromUrl(url: url)
         request.httpMethod = "GET"
-        return sendRequest(request: request)
+        return sendRequest(request)
     }
     
     func setOffset(to number: Int) {
