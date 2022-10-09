@@ -17,6 +17,8 @@ class GalleryViewController: UIViewController {
     private var presenter: GalleryViewPresenterInput?
     private var reachedLimit = false
     private var selectedCategory: GifCategory = .trending
+    
+    weak var coordinator: AppCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,7 @@ class GalleryViewController: UIViewController {
     }
     
     private func prepareUI() {
-        title = "Goophy Gifs"
+        navigationItem.title = "Goophy Gifs"
         collectionView.refreshControl = UIRefreshControl()
         collectionView.refreshControl?.tintColor = .systemBackground
         collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -184,10 +186,7 @@ extension GalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let gif = gifs[indexPath.row]
-        let gifViewController = GifViewController.instantiate(fromAppStoryboard: .Main)
-        gifViewController.gif = gif
-        gifViewController.imageProcessors = imageProcessors(for: gif)
-        navigationController?.pushViewController(gifViewController, animated: true)
+        coordinator?.openGifViewController(for: gif, with: imageProcessors(for: gif))
     }
     
 }

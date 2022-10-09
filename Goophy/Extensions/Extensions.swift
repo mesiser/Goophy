@@ -40,20 +40,20 @@ extension UIColor {
     }
 }
 
-enum AppStoryboard : String {
-    case Main = "Main"
-    
-    var storyboard : UIStoryboard {
-      return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
-    }
-    
-    func viewController<T: UIViewController>(viewControllerClass: T.Type) -> T {
-        let storyboardID = (viewControllerClass as UIViewController.Type).storyboardID
-        return storyboard.instantiateViewController(withIdentifier: storyboardID) as! T
-    }
-}
-
 extension UIViewController {
+    
+    enum AppStoryboard : String {
+        case Main
+        
+        var storyboard : UIStoryboard {
+            return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
+        }
+        
+        func viewController<T: UIViewController>(viewControllerClass: T.Type) -> T {
+            let storyboardID = (viewControllerClass as UIViewController.Type).storyboardID
+            return storyboard.instantiateViewController(withIdentifier: storyboardID) as! T
+        }
+    }
     
     class var storyboardID: String {
         return "\(self)"

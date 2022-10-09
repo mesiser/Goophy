@@ -13,15 +13,6 @@ final class GifCell: UICollectionViewCell {
     @IBOutlet weak var imageView: GIFImageView!
     
     private var gradientLayer: CAGradientLayer?
-
-    func shimmer() {
-        let colors: (UIColor, UIColor) = UIColor.randomTuple
-        let backgroundColor = colors.0
-        let gradientColor = colors.1
-        imageView.backgroundColor = backgroundColor
-        addGradient(for: backgroundColor, gradientColor: gradientColor)
-        addAnimation()
-    }
     
     private func addGradient(for color: UIColor, gradientColor: UIColor) {
         gradientLayer = CAGradientLayer()
@@ -45,6 +36,15 @@ final class GifCell: UICollectionViewCell {
         
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
+    }
+
+    func shimmer() {
+        let colors: (UIColor, UIColor) = UIColor.randomTuple
+        let backgroundColor = colors.0
+        let gradientColor = colors.1
+        imageView.backgroundColor = backgroundColor
+        addGradient(for: backgroundColor, gradientColor: gradientColor)
+        addAnimation()
     }
     
     func removeGradient() {

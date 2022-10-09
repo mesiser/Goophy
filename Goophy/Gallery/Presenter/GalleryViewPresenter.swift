@@ -7,14 +7,6 @@
 import Combine
 import Foundation
 
-typealias Gif = GifResponse.GifObject.Image
-typealias GifCategory = GifDataService.GifCatergory
-
-enum GifFetchResult {
-    case success([Gif])
-    case error(String)
-}
-
 protocol GalleryViewPresenterInput {
     func fetchGifs(for category: GifCategory)
     func resetOffset()

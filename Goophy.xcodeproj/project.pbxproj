@@ -10,6 +10,7 @@
 		DD140B4E27FDF5EC00F40582 /* GoophySlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD140B4D27FDF5EC00F40582 /* GoophySlowTests.swift */; };
 		DD9B9B0127F3280900787260 /* GifViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9B9B0027F3280900787260 /* GifViewPresenter.swift */; };
 		DD9B9B0727F3654000787260 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9B9B0627F3654000787260 /* GalleryViewController.swift */; };
+		DDC1D31728F340FF00F54484 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC1D31628F340FF00F54484 /* AppCoordinator.swift */; };
 		DDE9E60827F3217000788D76 /* GifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE9E60727F3217000788D76 /* GifViewController.swift */; };
 		DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF7162627F1C9E200A82028 /* AppDelegate.swift */; };
 		DDF7162E27F1C9E200A82028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF7162C27F1C9E200A82028 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		DD140B5827FDFD9900F40582 /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
 		DD9B9B0027F3280900787260 /* GifViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewPresenter.swift; sourceTree = "<group>"; };
 		DD9B9B0627F3654000787260 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		DDC1D31628F340FF00F54484 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DDE9E60727F3217000788D76 /* GifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewController.swift; sourceTree = "<group>"; };
 		DDF7162327F1C9E200A82028 /* Goophy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goophy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF7162627F1C9E200A82028 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF7162627F1C9E200A82028 /* AppDelegate.swift */,
+				DDC1D31628F340FF00F54484 /* AppCoordinator.swift */,
 				DDF7166A27F2666E00A82028 /* Gallery */,
 				DDE9E60927F3217600788D76 /* Gif */,
 				DDF7166527F2663F00A82028 /* NetworkLayer */,
@@ -187,7 +190,6 @@
 			children = (
 				DDF7165D27F2614300A82028 /* GifCell.swift */,
 				DD9B9B0627F3654000787260 /* GalleryViewController.swift */,
-				DDF7165727F25B8900A82028 /* MosaicFlowLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF7165927F25C5D00A82028 /* Extensions.swift */,
+				DDF7165727F25B8900A82028 /* MosaicFlowLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC1D31728F340FF00F54484 /* AppCoordinator.swift in Sources */,
 				DDF7166427F263AB00A82028 /* GalleryViewPresenter.swift in Sources */,
 				DDF7166227F262D500A82028 /* GifDataService.swift in Sources */,
 				DDF7162727F1C9E200A82028 /* AppDelegate.swift in Sources */,

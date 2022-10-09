@@ -8,7 +8,15 @@
 import AVKit
 import Foundation
 
-struct GifResponse: Codable {
+public typealias Gif = GifResponse.GifObject.Image
+typealias GifCategory = GifDataService.GifCatergory
+
+enum GifFetchResult {
+    case success([Gif])
+    case error(String)
+}
+
+public struct GifResponse: Codable {
     let data: [GifObject]
     let pagination: Pagination
 
@@ -22,10 +30,10 @@ struct GifResponse: Codable {
         }
     }
 
-    struct GifObject: Codable {
+    public struct GifObject: Codable {
         let images: Image
 
-        struct Image: Codable {
+        public struct Image: Codable {
             let original: Data
             let downsized: Data
             
