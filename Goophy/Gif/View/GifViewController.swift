@@ -31,7 +31,7 @@ final class GifViewController: UIViewController {
         imageView.image = nil
     }
     
-    @IBAction func shareButtonTapped(_ sender: UIButton) {
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             guard let image = imageView.image, let url = gif?.original.videoURL else { return }
@@ -57,7 +57,7 @@ final class GifViewController: UIViewController {
             image: UIImage.init(systemName: "square.and.arrow.up"),
             style: .plain,
             target: self,
-            action: #selector(shareTap)
+            action: #selector(shareButtonTapped)
         )
     }
     
@@ -94,7 +94,7 @@ final class GifViewController: UIViewController {
     }
     
     @objc
-    func shareTap() {
+    func shareButtonTapped() {
         guard let url = gif?.original.videoURL else { return }
         shareGifFrom(url: url)
     }
