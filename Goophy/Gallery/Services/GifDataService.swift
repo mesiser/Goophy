@@ -16,14 +16,16 @@ final class GifDataService: GifProvider {
         case celebrities
         case cats
         
-        init(from tag: Int) {
+        init?(from tag: Int) {
             switch tag {
+            case 0:
+                self = .trending
             case 1:
                 self = .cats
             case 2:
                 self = .celebrities
             default:
-                self = .trending
+                return nil
             }
         }
         
@@ -31,7 +33,7 @@ final class GifDataService: GifProvider {
             switch self {
             case .trending:
                 return "https://api.giphy.com/v1/gifs/trending?api_key=\(token)"
-            default:
+            case .cats, .celebrities:
                 return "https://api.giphy.com/v1/gifs/search?api_key=\(token)&q=\(self.rawValue)"
             }
         }

@@ -26,7 +26,8 @@ class GalleryViewController: UIViewController {
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        selectedCategory = .init(from: sender.selectedSegmentIndex)
+        guard let newCategory = GifCategory(from: sender.selectedSegmentIndex) else { return }
+        selectedCategory = newCategory
         refresh()
     }
     
