@@ -11,7 +11,6 @@ class GifProvider {
     
     let gifsPerPage: Int = 100
     
-    
     struct FailedResponse: Codable {
         let message: String?
 

@@ -4,6 +4,8 @@
 //
 //  Created by Vadim Shalugin on 28.03.2022.
 //
+import Foundation
+
 typealias Gif = GifResponse.GifObject.Image
 typealias GifCategory = GifDataService.GifCatergory
 
@@ -20,8 +22,6 @@ protocol GalleryViewPresenterInput {
 protocol GalleryViewPresenterOutput: AnyObject {
     func gifsFetchedWith(outcome: GifFetchResult, reachedLimit: Bool)
 }
-
-import Foundation
 
 final class GalleryViewPresenter: GalleryViewPresenterInput {
     
