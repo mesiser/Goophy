@@ -7,6 +7,7 @@
 
 import Combine
 import Gifu
+import Nuke
 import UIKit
 
 typealias Handler<T> = (T) -> Void
@@ -96,6 +97,18 @@ extension Publisher {
         } receiveValue: {
             result(.success($0))
         }
+    }
+}
+
+extension Gif {
+    func imageProcessors() -> [ImageProcessing] {
+        
+        let width = CGFloat(Float(downsized.width) ?? 0)
+        let height = CGFloat(Float(downsized.height) ?? 0)
+        let imageSize = CGSize(width: width, height: height)
+        let resizedImageProcessors: [ImageProcessing] = [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
+       
+        return resizedImageProcessors
     }
 }
 

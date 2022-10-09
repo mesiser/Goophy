@@ -15,7 +15,6 @@ final class GifViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var gif: Gif?
-    var imageProcessors: [ImageProcessing] = []
     private var presenter: GifViewPresenter?
 
     override func viewDidLoad() {
@@ -69,7 +68,7 @@ final class GifViewController: UIViewController {
         guard let gif = gif, let url = gif.original.videoURL else { return }
         let request = ImageRequest(
             url: url,
-            processors: imageProcessors
+            processors: gif.imageProcessors()
         )
 
         Nuke.loadImage(with: request, into: imageView)

@@ -18,7 +18,7 @@ class GalleryViewController: UIViewController {
     private var reachedLimit = false
     private var selectedCategory: GifCategory = .trending
     
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: AppCoordinatorOutput?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,20 +120,18 @@ extension GalleryViewController: UICollectionViewDataSource {
         else {
             return UICollectionViewCell()
         }
-
-        let request = ImageRequest(
-            url: url,
-            processors: imageProcessors(for: gifs[indexPath.row])
-        )
         
         cell.shimmer()
-
+        
+        let gif = gifs[indexPath.row]
+        let request = ImageRequest(
+            url: url,
+            processors: gif.imageProcessors()
+        )
+        
         Nuke.loadImage(with: request, into: cell.imageView) { result in
-            switch result {
-            case .success:
+            if case .success = result {
                 cell.removeGradient()
-            default:
-                break
             }
         }
         
@@ -149,16 +147,6 @@ extension GalleryViewController: UICollectionViewDataSource {
         let offset = collectionView.contentOffset.y
         let frameHeight = collectionView.frame.height
         setArrowView(visible: offset > frameHeight)
-    }
-    
-    private func imageProcessors(for gif: Gif) -> [ImageProcessing] {
-        
-        let width = CGFloat(Float(gif.downsized.width) ?? 0)
-        let height = CGFloat(Float(gif.downsized.height) ?? 0)
-        let imageSize = CGSize(width: width, height: height)
-        let resizedImageProcessors: [ImageProcessing] = [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
-       
-        return resizedImageProcessors
     }
 }
 
@@ -184,9 +172,7 @@ extension GalleryViewController: MosaicLayoutDelegate {
 extension GalleryViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        let gif = gifs[indexPath.row]
-        coordinator?.openGifViewController(for: gif, with: imageProcessors(for: gif))
+        coordinator?.openGifViewController(for: gifs[indexPath.row])
     }
     
 }

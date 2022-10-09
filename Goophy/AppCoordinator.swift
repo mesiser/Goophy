@@ -30,11 +30,15 @@ final class AppCoordinator: AppCoordinatorInput {
         galleryViewContoller.coordinator = self
         navigationController.pushViewController(galleryViewContoller, animated: false)
     }
+}
+
+// MARK: - App Coordinator Output Methods
+
+extension AppCoordinator: AppCoordinatorOutput {
     
-    func openGifViewController(for gif: Gif, with processors: [ImageProcessing]) {
+    func openGifViewController(for gif: Gif) {
         let gifViewController = GifViewController.instantiate(fromAppStoryboard: .Main)
         gifViewController.gif = gif
-        gifViewController.imageProcessors = processors
         navigationController.pushViewController(gifViewController, animated: true)
     }
 }
