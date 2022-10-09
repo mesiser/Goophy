@@ -5,13 +5,17 @@
 //  Created by Vadim Shalugin on 28.03.2022.
 //
 
+import Combine
 import Foundation
 
 class GifProvider {
     
-    let gifsPerPage: Int = 100
-    
-    struct FailedResponse: Codable {
+    enum APIError: LocalizedError {
+        /// Invalid request, e.g. invalid URL
+        case invalidRequestError(String)
+    }
+        
+    struct FailedResponse: Codable, Error {
         let message: String?
 
         init(from error: Error) {
@@ -24,50 +28,19 @@ class GifProvider {
         return URLRequest(url: url)
     }
     
-    func sendRequest<T: Codable>(request: URLRequest, completionHandler: @escaping (T?, FailedResponse?) -> Void) {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                DispatchQueue.main.async {
-                    completionHandler(nil, error != nil ? FailedResponse(from: error!) : nil)
+    func sendRequest<Response>(request: URLRequest) -> AnyPublisher<Response, Error> where Response: Codable {
+        URLSession.shared
+            .dataTaskPublisher(for: request)
+                .tryMap() { element in
+                    guard let httpResponse = element.response as? HTTPURLResponse,
+                        httpResponse.statusCode == 200 else {
+                            throw URLError(.badServerResponse)
+                        }
+                    return element.data
                 }
-                return
-            }
-
-            let decoder = JSONDecoder()
-            var failed: GifProvider.FailedResponse?
-            
-            self.log(data)
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                failed = try? decoder.decode(FailedResponse.self, from: data)
-                if failed?.message == nil {
-                    failed = nil
-                }
-            }
-
-            var decodedData: T?
-            do {
-                decodedData = try decoder.decode(T.self, from: data)
-            } catch let DecodingError.dataCorrupted(context) {
-                print(context)
-            } catch let DecodingError.keyNotFound(key, context) {
-                print("Key '\(key)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.valueNotFound(value, context) {
-                print("Value '\(value)' not found:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch let DecodingError.typeMismatch(type, context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                print("error: ", error)
-            }
-            
-            DispatchQueue.main.async {
-                completionHandler(decodedData, failed)
-            }
-        }
-        task.resume()
+                .decode(type: Response.self, decoder: JSONDecoder())
+                .receive(on: DispatchQueue.main)
+                .eraseToAnyPublisher()
     }
     
     private func log(_ data: Data) {

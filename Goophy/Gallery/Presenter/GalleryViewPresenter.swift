@@ -4,6 +4,7 @@
 //
 //  Created by Vadim Shalugin on 28.03.2022.
 //
+import Combine
 import Foundation
 
 typealias Gif = GifResponse.GifObject.Image
@@ -26,7 +27,8 @@ protocol GalleryViewPresenterOutput: AnyObject {
 final class GalleryViewPresenter: GalleryViewPresenterInput {
     
     private let gifDataService = GifDataService()
-    
+    private var anyCancellable = Set<AnyCancellable>()
+
     weak var delegate: GalleryViewPresenterOutput?
     
     init(delegate: GalleryViewPresenterOutput) {
@@ -35,23 +37,23 @@ final class GalleryViewPresenter: GalleryViewPresenterInput {
 
     func fetchGifs(for category: GifCategory) {
         
-        gifDataService.fetchGifs(for: category) { [weak self] response, failed in
-            if let failed = failed {
-                self?.delegate?.gifsFetchedWith(outcome: .error(failed.message ?? "Unknown error"), reachedLimit: false)
-            }
-            
-            guard let self = self, let response = response else {
-                return
-            }
-
-            let newItems = response.data.compactMap { $0.images }
-            let reachedLimit = newItems.count == 0
-            self.gifDataService.currentOffset += self.gifDataService.gifsPerPage
-            self.delegate?.gifsFetchedWith(outcome: .success(newItems), reachedLimit: reachedLimit)
-        }
+        gifDataService.fetchGifs(for: category)
+            .sink { receiveCompletion in
+                switch receiveCompletion {
+                case .finished:
+                    print("Finished")
+                case .failure(let error):
+                    print("Error \(error)")
+                }
+            } receiveValue: { [weak self] response in
+                let newItems = response.data.compactMap { $0.images }
+                let reachedLimit = newItems.count == 0
+                self?.gifDataService.increaseOffset()
+                self?.delegate?.gifsFetchedWith(outcome: .success(newItems), reachedLimit: reachedLimit)
+            }.store(in: &anyCancellable)
     }
     
     func resetOffset() {
-        gifDataService.currentOffset = 0
+        gifDataService.setOffset(to: 0)
     }
 }
