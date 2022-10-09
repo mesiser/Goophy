@@ -82,7 +82,10 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: GalleryViewPresenterOutput {
     
     func gifsFetchedWith(outcome: GifFetchResult, reachedLimit: Bool) {
-        collectionView.refreshControl?.endRefreshing()
+        if collectionView.refreshControl?.isRefreshing ?? false {
+            collectionView.refreshControl?.endRefreshing()
+        }
+        
         switch outcome {
         case .success(let newGifs):
             self.reachedLimit = reachedLimit
@@ -114,16 +117,15 @@ extension GalleryViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCell", for: indexPath) as? GifCell,
-            let url = gifs[indexPath.row].downsized.videoURL
-        else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCell", for: indexPath) as? GifCell else {
             return UICollectionViewCell()
         }
         
         cell.shimmer()
         
         let gif = gifs[indexPath.row]
+        let url = gif.downsized.videoURL
+
         let request = ImageRequest(
             url: url,
             processors: gif.imageProcessors()
@@ -160,9 +162,9 @@ extension GalleryViewController: MosaicLayoutDelegate {
     }
 
     private func calculateHeight(for gif: Gif, scaledToWidth: CGFloat) -> CGFloat {
-        let oldWidth = CGFloat(Float(gif.downsized.width) ?? 0)
+        let oldWidth = CGFloat(Float(gif.downsized.width ?? "100") ?? 0)
         let scaleFactor = scaledToWidth / oldWidth
-        let newHeight = CGFloat(Float(gif.downsized.height) ?? 0) * scaleFactor
+        let newHeight = CGFloat(Float(gif.downsized.height ?? "100") ?? 0) * scaleFactor
         return newHeight
     }
 }

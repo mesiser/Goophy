@@ -18,17 +18,6 @@ enum GifFetchResult {
 
 public struct GifResponse: Codable {
     let data: [GifObject]
-    let pagination: Pagination
-
-    struct Pagination: Codable {
-        let totalCount: Int
-        let offset: Int
-
-        enum CodingKeys: String, CodingKey {
-            case totalCount = "total_count"
-            case offset
-        }
-    }
 
     public struct GifObject: Codable {
         let images: Image
@@ -44,8 +33,8 @@ public struct GifResponse: Codable {
 
             struct Data: Codable {
                 let url: String?
-                let height: String
-                let width: String
+                var height: String?
+                var width: String?
 
                 var videoURL: URL? {
                     URL(string: url ?? "")

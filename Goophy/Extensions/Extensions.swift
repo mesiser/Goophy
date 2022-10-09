@@ -103,8 +103,8 @@ extension Publisher {
 extension Gif {
     func imageProcessors() -> [ImageProcessing] {
         
-        let width = CGFloat(Float(downsized.width) ?? 0)
-        let height = CGFloat(Float(downsized.height) ?? 0)
+        let width = CGFloat(Float(downsized.width ?? "100") ?? 0)
+        let height = CGFloat(Float(downsized.height ?? "100") ?? 0)
         let imageSize = CGSize(width: width, height: height)
         let resizedImageProcessors: [ImageProcessing] = [ImageProcessors.Resize(size: imageSize, contentMode: .aspectFill)]
        
